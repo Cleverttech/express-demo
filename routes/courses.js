@@ -1,24 +1,15 @@
-const express = require('express')
-const router = express.Router()
-
+const express = require('express');
+const router = express.Router();
 
 // app.get(), app.post(), app.put(), app.delete()
 const courses = [
-    {id: 1, name: 'course1',},
-    {id: 2,name: 'course2'},
-    {id: 3, name: 'course3'}
-];
-app.get('/', (req, res) => {
-    res.send("Here are Clever's courses");
-});
+    { id: 1, name: 'course1' },
+    { id: 2, name: 'course2' },
+    { id: 3, name: 'course3' },
+]
 
 
-// return all list of courses
-router.get('/', (req, res) => {
-    res.send(courses); // returns a the courses array
-});
-
-// adding a course
+// add
 router.post('/', (req, res) => {
     const { error } = validateCourse(req.body); //function below
 
@@ -32,7 +23,7 @@ router.post('/', (req, res) => {
     res.send(course);
 });
 
-// finding a course
+// find
 router.get('/:id', (req, res) => {
     const course = courses.find((c) => c.id === parseInt(req.params.id));
     if (!course)
@@ -42,7 +33,7 @@ router.get('/:id', (req, res) => {
     res.send(course);
 });
 
-//Updating an existing course
+//Update
 router.put('/:id', (req, res) => {
     const course = courses.find((c) => c.id === parseInt(req.params.id));
     if (!course)
@@ -58,7 +49,7 @@ router.put('/:id', (req, res) => {
     res.send(course);
 });
 
-// Deleting a course
+// Delete
 router.delete('/:id', (req, res) => {
     const course = courses.find((c) => c.id === parseInt(req.params.id));
     if (!course)
@@ -71,11 +62,11 @@ router.delete('/:id', (req, res) => {
     res.send(course);
 });
 
-// course validation with joi
+// validation with joi
 function validateCourse(course) {
     const schema = {
         name: Joi.string().min(3).required(),
     };
     return Joi.validate(course, schema);
 }
-module.exports= router;
+module.exports = router;
