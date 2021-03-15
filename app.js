@@ -10,6 +10,9 @@ const authenticate = require('./authenticate');
 const express = require('express');
 const app = express();
 
+// test templating engine
+app.set('view engine', 'pug')
+app.set('views', './views') // default
 // configuration
 // console.log(`NODE_ENV: ${process.env.NODE_ENV}`)
 // console.log(`app: ${app.get('env')}`)
