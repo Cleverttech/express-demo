@@ -1,7 +1,8 @@
 const Joi = require('joi');
 const config = require('config')
-const startupDebugger= require('debug')('app:startup');
-const dbDebugger= require('debug')('app:db');
+const debug= require('debug')('app:startup');
+// const startupDebugger= require('debug')('app:startup');
+// const dbDebugger= require('debug')('app:db');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const logger = require('./logger');
@@ -17,19 +18,19 @@ console.log(`Application Name: ${config.get('name')}`)
 console.log(`Mail Server: ${config.get('mail.host')}`)
 console.log(`Mail password: ${config.get('mail.password')}`)
 
-
+// run morgan to check logs
 if (app.get('env') === 'development') {
     app.use(morgan('short'));
     console.log('morgan is enabled...')
 }
 
-// debugging using debug
+// debugging using debug-- run startup
 if (app.get('env') === 'development') {
     app.use(morgan('short'));
-    startupDebugger('debugger is enabled...')
+    debug('debugger is enabled...')
 }
 // run DB debugger
-dbDebugger('connecting to database..')
+// dbDebugger('connecting to database..')
 
 app.use(express.json()); // req.body
 app.use(express.urlencoded({ extended: true })); // req.body
