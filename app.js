@@ -47,8 +47,11 @@ const courses = [
     {id: 2,name: 'course2'},
     {id: 3, name: 'course3'}
 ];
+// app.get('/', (req, res) => {
+//     res.send("Here are Clever's courses");
+// });
 app.get('/', (req, res) => {
-    res.send("Here are Clever's courses");
+    res.render({ title: "My Express App", message:"Testing a template engine"});
 });
 
 // return all list of courses
